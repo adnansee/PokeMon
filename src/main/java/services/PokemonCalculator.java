@@ -12,21 +12,15 @@ import javax.persistence.Persistence;
 
 @Component
 public class PokemonCalculator {
-
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pokemon");
         EntityManager em = emf.createEntityManager();
-
-
-
 
     @Bean
     @Lazy
     public void giveListName() {
-
         for (int i = 1; i <= 4; i++) {
             PokeMon pokeMon = em.find(PokeMon.class, i);
             System.out.println(pokeMon.getPokemonName());
-
         }
     }
 
@@ -37,8 +31,6 @@ public class PokemonCalculator {
         for (int i = 1; i <= 4; i++) {
             PokeMon pokeMon = em.find(PokeMon.class, i);
             System.out.println(pokeMon);
-
-
         }
     }
 

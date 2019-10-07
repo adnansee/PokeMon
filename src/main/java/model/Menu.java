@@ -14,13 +14,13 @@ public class Menu {
 
     public void start() {
 
-        System.out.println("Please enter name;");
+        System.out.println("Please enter name:");
         Scanner sc = new Scanner(System.in);
         user.setUserName(sc.nextLine());
         System.out.println("WELCOME " + user.getUserName());
 
 
-        System.out.println("WHATS NEXT?");
+        System.out.println("WHATS NEXT?\n");
         System.out.println("Press\n" + "1 for List Names" + "\n" + "2 for Details" + "\n" + "3 for Type" + "\n" + "4 for exit" + "\n");
         int choice = Integer.parseInt(sc.nextLine());
 

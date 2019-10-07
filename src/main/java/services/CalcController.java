@@ -4,30 +4,19 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
-
-
 public class CalcController {
 
+    private ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(PokemonCalculator.class);
+
     public void showListNames() {
-        try (
-                ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(PokemonCalculator.class)) {
-            applicationContext.getBean("giveListName");
-        }
+        applicationContext.getBean("giveListName");
     }
 
     public void showDetails() {
-        try (
-                ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(PokemonCalculator.class)) {
-            applicationContext.getBean("giveDetails");
-        }
+        applicationContext.getBean("giveDetails");
     }
 
     public void showType() {
-        try (
-                ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(PokemonCalculator.class)) {
-            applicationContext.getBean("giveType");
-        }
-
+        applicationContext.getBean("giveType");
     }
-
 }
