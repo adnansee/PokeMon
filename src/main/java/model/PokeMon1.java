@@ -1,13 +1,9 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.*;
 
 @Entity
-public class PokeMon {
+public class PokeMon1 {
     @Id
     @GeneratedValue
     private int id;
@@ -18,11 +14,13 @@ public class PokeMon {
     private int defence;
     private int hitPoints;
     private int CombatPower;
-
     @Transient
     private Integer dust;
 
-    public PokeMon(String pokemonName, int pokemonType, int level, int attack, int defence, int hitPoints, int combatPower) {
+    @ManyToOne
+    private Trainer trainer;
+
+    public PokeMon1(String pokemonName, int pokemonType, int level, int attack, int defence, int hitPoints, int combatPower) {
         this.pokemonName = pokemonName;
         this.pokemonType = pokemonType;
         this.level = level;
@@ -32,7 +30,7 @@ public class PokeMon {
         CombatPower = combatPower;
     }
 
-    public PokeMon() {
+    public PokeMon1() {
     }
 
     @Override
@@ -53,7 +51,6 @@ public class PokeMon {
         this.id = id;
     }
 
-
     public int getId() {
         return id;
     }
@@ -62,7 +59,7 @@ public class PokeMon {
         return pokemonName;
     }
 
-    public PokeMon setPokemonName(String pokemonName) {
+    public PokeMon1 setPokemonName(String pokemonName) {
         this.pokemonName = pokemonName;
         return this;
     }
@@ -71,7 +68,7 @@ public class PokeMon {
         return pokemonType;
     }
 
-    public PokeMon setPokemonType(int pokemonType) {
+    public PokeMon1 setPokemonType(int pokemonType) {
         this.pokemonType = pokemonType;
         return this;
     }
@@ -80,7 +77,7 @@ public class PokeMon {
         return level;
     }
 
-    public PokeMon setLevel(int level) {
+    public PokeMon1 setLevel(int level) {
         this.level = level;
         return this;
     }
@@ -89,7 +86,7 @@ public class PokeMon {
         return attack;
     }
 
-    public PokeMon setAttack(int attack) {
+    public PokeMon1 setAttack(int attack) {
         this.attack = attack;
         return this;
     }
@@ -98,7 +95,7 @@ public class PokeMon {
         return defence;
     }
 
-    public PokeMon setDefence(int defence) {
+    public PokeMon1 setDefence(int defence) {
         this.defence = defence;
         return this;
     }
@@ -107,7 +104,7 @@ public class PokeMon {
         return hitPoints;
     }
 
-    public PokeMon setHitPoints(int hitPoints) {
+    public PokeMon1 setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
         return this;
     }
@@ -116,7 +113,7 @@ public class PokeMon {
         return CombatPower;
     }
 
-    public PokeMon setCombatPower(int combatPower) {
+    public PokeMon1 setCombatPower(int combatPower) {
         this.CombatPower = combatPower;
         return this;
     }

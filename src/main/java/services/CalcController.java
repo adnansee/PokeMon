@@ -19,4 +19,12 @@ public class CalcController {
     public void showType() {
         applicationContext.getBean("giveType");
     }
+
+    public void deleteDB(){applicationContext.getBean("delPokemon");}
+
+    public void editDB1(){applicationContext.getBean("addPokemon");}
+
+    public void getPokemon(){applicationContext.getBean("getPokemon");}
+
+
 }

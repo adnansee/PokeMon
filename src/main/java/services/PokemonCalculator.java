@@ -1,46 +1,61 @@
 package services;
 
+import NexDB.PokemonAbstractDAO;
 import model.PokeMon;
-import model.PokemonType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.util.Scanner;
 
 @Component
 public class PokemonCalculator {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pokemon");
-        EntityManager em = emf.createEntityManager();
+
+    PokemonAbstractDAO p = new PokemonAbstractDAO();
+    Scanner sc = new Scanner(System.in);
+
+    @Bean
+    @Lazy
+    public PokeMon addPokemon() {
+        System.out.println("Please enter data for Pokemon...MATE");
+        PokeMon pokeMon = new PokeMon(sc.nextLine(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt());
+        p.save(pokeMon);
+        return pokeMon;
+    }
+
+    @Bean
+    @Lazy
+    public void delPokemon() {
+
+        PokeMon pokeMon = p.returnPokemon();
+        p.delete(pokeMon);
+    }
+
+    @Bean
+    @Lazy
+    private PokeMon getPokemon() {
+        p.getPokemonOne();
+
+        return null;
+    }
 
     @Bean
     @Lazy
     public void giveListName() {
-        for (int i = 1; i <= 4; i++) {
-            PokeMon pokeMon = em.find(PokeMon.class, i);
-            System.out.println(pokeMon.getPokemonName());
-        }
+        p.giveNames();
     }
-
 
     @Bean
     @Lazy
     public void giveDetails() {
-        for (int i = 1; i <= 4; i++) {
-            PokeMon pokeMon = em.find(PokeMon.class, i);
-            System.out.println(pokeMon);
-        }
+        p.giveDetails();
     }
 
     @Bean
     @Lazy
-    public void giveType(){
-        for (int i = 1; i <= 4; i++) {
-            PokemonType pokemonType = em.find(PokemonType.class,i);
-            System.out.println(pokemonType);
-        }
+    public void giveType() {
+        p.giveType();
     }
 }
 
