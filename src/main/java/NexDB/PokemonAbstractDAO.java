@@ -54,6 +54,13 @@ public class PokemonAbstractDAO<E> implements PokemonDAO<E> {
         System.out.println("Deleted");
             }
 
+    public PokeMon returnPokemon(){
+        System.out.println("Enter number to del Pokemon");
+        int id = sc.nextInt();
+        TypedQuery<PokeMon> typedQuery = (TypedQuery<PokeMon>) em.createNativeQuery("SELECT * FROM pokemon AS p WHERE p.ID="+id, PokeMon.class);
+        return typedQuery.getSingleResult();
+    }
+
     @Override
     public List<PokeMon> findAll() {
         TypedQuery<PokeMon> typedQuery = (TypedQuery<PokeMon>) em.createNativeQuery("SELECT * FROM pokemon", PokeMon.class);
@@ -87,7 +94,6 @@ public class PokemonAbstractDAO<E> implements PokemonDAO<E> {
     }
 
 
-
     @Override
     public void clear() {
         getSession().clear();
@@ -114,7 +120,6 @@ public class PokemonAbstractDAO<E> implements PokemonDAO<E> {
     public PokeMon giveDetails() {
         TypedQuery<PokeMon> typedQuery = (TypedQuery<PokeMon>) em.createNativeQuery("SELECT * FROM pokemon", PokeMon.class);
         typedQuery.getResultList().forEach(pokeMon -> System.out.println(pokeMon));
-
         return null;
     }
 
@@ -137,10 +142,5 @@ public class PokemonAbstractDAO<E> implements PokemonDAO<E> {
     }
 
 
-    public PokeMon returnPokemon(){
-        System.out.println("Enter number to del Pokemon");
-        int id = sc.nextInt();
-        TypedQuery<PokeMon> typedQuery = (TypedQuery<PokeMon>) em.createNativeQuery("SELECT * FROM pokemon AS p WHERE p.ID="+id, PokeMon.class);
-        return typedQuery.getSingleResult();
-    }
+
 }
